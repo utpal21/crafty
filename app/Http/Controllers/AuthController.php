@@ -25,9 +25,8 @@ class AuthController extends Controller
         ]);
         $credentials = $request->only('email', 'password');
         if (Auth::attempt($credentials)) {
-           var_dump(Auth::check());
-           die(); 
-            return redirect()->intended('dashboard')
+         
+            return redirect()->intended('/')
                         ->withSuccess('Logged-in');
         }
         return redirect("login")->withSuccess('Credentials are wrong.');
@@ -50,6 +49,7 @@ class AuthController extends Controller
         ]);
         $data = $request->all();
         $check = $this->createUser($data);
+        Auth::login($check);
         return redirect("/")->withSuccess('Successfully logged-in!');
     }
 
@@ -77,6 +77,6 @@ class AuthController extends Controller
     public function logout() {
         Session::flush();
         Auth::logout();
-        return Redirect('login');
+        return Redirect('/auth/login');
     }
 }

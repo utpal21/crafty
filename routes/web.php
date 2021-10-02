@@ -27,6 +27,7 @@ Route::get('/', 'App\Http\Controllers\HomeController@index');
 Route::get('/product/details/{id}', 'App\Http\Controllers\HomeController@show');
 Route::get('/shop', 'App\Http\Controllers\ShopController@index');
 Route::get('/about-us', 'App\Http\Controllers\AboutusController@index');
+Route::get('/contact-us', 'App\Http\Controllers\AboutusController@contact_us');
 
 
 
@@ -39,4 +40,4 @@ Route::post('/create-user', [AuthController::class, 'customSignup'])->name('user
 
 
 Route::get('/dashboard', [AuthController::class, 'dashboardView'])->name('dashboard');
-Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
+Route::get('/user/auth/logout', [AuthController::class, 'logout'])->name('logout');

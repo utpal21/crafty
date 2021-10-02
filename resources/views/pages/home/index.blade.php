@@ -126,14 +126,16 @@
             </div>
             <div class="card-img-overlay d-flex py-4 py-sm-5 pl-6 pr-4">
               <div class="d-flex flex-column">
-                <a href="#" class="font-weight-bold mb-1 d-block lh-12">{{ $fp->name }}</a>
-                <p class="mt-auto text-primary mb-0 font-weight-500">
+                <a href="{{ url('/product/details').'/'.Crypt::encrypt($fp->id) }}"
+                  class="font-weight-bold mb-1 d-block lh-12">{{ $fp->name }}</a>
+                <p class=" mt-auto text-primary mb-0 font-weight-500">
                   {{ $fp->price_range }}
                 </p>
               </div>
               <div class="ml-auto d-flex flex-column">
                 <div class="my-auto content-change-vertical">
-                  <a href="#" data-toggle="tooltip" data-placement="left" title="Add to card"
+                  <a href="#" data-toggle="modal" data-target="#exampleModalCenter" data-toggle="tooltip"
+                    data-placement="left" title="Add to card"
                     class="add-to-cart d-flex align-items-center justify-content-center text-primary bg-white hover-white bg-hover-primary w-45px h-45px rounded-circle mb-2 border">
                     <i class="far fa-shopping-basket"></i>
                   </a>

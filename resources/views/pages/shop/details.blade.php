@@ -53,7 +53,9 @@
                     </div>
                   </div>
                   <div class="col-sm-8 mb-6 w-100 px-2">
-                    <button type="submit" class="btn btn-primary btn-block ">Send Inquery
+                    <button type="button" data-toggle="modal" data-target="#exampleModalCenter"
+                      class="btn btn-primary btn-block ">Send
+                      Inquery
                     </button>
                   </div>
                 </div>
@@ -371,7 +373,8 @@
               </div>
               <div class="ml-auto d-flex flex-column">
                 <div class="my-auto content-change-vertical">
-                  <a href="#" data-toggle="tooltip" data-placement="left" title="Add to card"
+                  <a href="#" data-target="#exampleModalCenter" data-toggle="tooltip" data-placement="left"
+                    title="Add to card"
                     class="add-to-cart d-flex align-items-center justify-content-center text-primary bg-white hover-white bg-hover-primary w-45px h-45px rounded-circle mb-2 border">
                     <i class="far fa-shopping-basket"></i>
                   </a>

@@ -19,8 +19,8 @@ class HomeController extends Controller
    */
   public function index()
   {
-    $user = Auth::user();
-    var_dump($user);
+    // $user = Auth::user();
+    // var_dump($user->name);
     
    $clientSays = DB::table('happyclients')->orderByRaw('created_at DESC')->get();
    $featured = DB::table('products')->where('featured', true)->orderByRaw('created_at DESC')->limit(10)->get();   
