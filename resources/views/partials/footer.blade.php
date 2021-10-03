@@ -129,12 +129,12 @@
               </div>
               <div class="form-group">
                 <label for="textinput">Inquery</label>
-                <textarea class="form-control" id="textinput" rows="3"></textarea>
+                <textarea name="inquerytext" class="form-control" id="textinput" rows="3"></textarea>
               </div>
               <div class="form-group">
                 <div class="modal-footer">
                   <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                  <button type="button" class="btn btn-primary">Send</button>
+                  <button id="sendInqueryBtn" type="button" class="btn btn-primary">Send</button>
                 </div>
               </div>
             </form>

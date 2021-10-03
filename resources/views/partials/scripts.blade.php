@@ -11,3 +11,4 @@
     <script src="{{ asset('lp/assets/vendors/mapbox-gl/mapbox-gl.js') }}"></script>
 
     <script src="{{ asset('js/theme.js') }}"></script>
+    <script src="{{ asset('js/cscript.js') }}"></script>

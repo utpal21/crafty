@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\EmailController;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,15 +14,6 @@ use App\Http\Controllers\AuthController;
 | contains the "web" middleware group. Now create something great!
 |
 */
-// Route::group(['prefix' => 'products'], function () {
-
-//    Route::get('/', 'App\Http\Controllers\HomeController@index')->name('products.index');
-//    Route::get('/create', 'Admin\ProductController@create')->name('admin.products.create');
-//    Route::post('/store', 'Admin\ProductController@store')->name('admin.products.store');
-//    Route::get('/edit/{id}', 'Admin\ProductController@edit')->name('admin.products.edit');
-//    Route::post('/update', 'Admin\ProductController@update')->name('admin.products.update');
-
-// });
 
 Route::get('/', 'App\Http\Controllers\HomeController@index');
 Route::get('/product/details/{id}', 'App\Http\Controllers\HomeController@show');
@@ -29,6 +21,8 @@ Route::get('/shop', 'App\Http\Controllers\ShopController@index');
 Route::get('/about-us', 'App\Http\Controllers\AboutusController@index');
 Route::get('/contact-us', 'App\Http\Controllers\AboutusController@contact_us');
 
+//Route::get('/send-email', [EmailController::class, "sendEmail"]);
+Route::post('/send-email', [EmailController::class, "ajaxSendEmail"])->name('ajax.send.mail');
 
 
 Route::get('/auth/login', [AuthController::class, 'index'])->name('login');
