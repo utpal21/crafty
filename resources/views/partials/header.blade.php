@@ -59,7 +59,7 @@
                       <div class="dropdown-menu px-0 pt-3 dropdown-menu-docs x-animated x-fadeInUp"
                         style="right:0;left:auto">
                         <div class="dropdown-body">
-                          <a class="dropdown-item py-1" href="#">
+                          <a class="dropdown-item py-1" href="{{ url('/user/mypage') }}">
                             <div class="media">
                               <div class="fs-20 mr-3">
                                 <i class="fal fa-file-alt"></i>

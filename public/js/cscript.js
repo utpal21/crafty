@@ -1,31 +1,63 @@
 
-
+ $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+ });
+    
 $("#sendInqueryBtn").click(function(e) {
   e.preventDefault();
-$.ajaxSetup({
-    headers: {
-        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-    }
-});
 
-  var name = $("input[name=name]").val();
-  var phone = $("input[name=phone]").val();
-  var email = $("input[name=email]").val();
-  var inquerytext = $("input[name=inquerytext]").val();
-
+  var name = $("#nameinput").val();
+  var phone = $("#emailinput").val();
+  var email = $("#phoneinput").val();
+  var inquerytext = $("#textinput").val();
+  var mesage = '';
+  var validation = false;
+  if (name == "") {
+    mesage = "Name is reqquired";
+  }
+  if (phone == "") {
+    mesage = "Phone is reqquired";
+  }
+  if (email == "") {
+    mesage = "Email is reqquired";
+  }
+  if (inquerytext == "") {
+    mesage = "Inquery text is reqquired";
+  }
+  if (mesage != "") {
+    $("#warningMsg").text(mesage);
+    $("#warningMsg").show();
+  } else {
+    $("#warningMsg").text('');
+    $("#warningMsg").hide();
+    validation = true;
+  }
+if(validation) {
   $.ajax({
-    type: 'POST',
-    url: "/send-email",
-    data: {
-      "_token": "{{ csrf_token() }}",
+    type: 'POST',   
+    //url:"{{ url('/send-email') }}",
+    url:"/send-email",
+    data: {     
       name: name,
       phone: phone,
       email: email,
       inquerytext: inquerytext,
     },
     success: function(data) {
-      alert(data.success);
+      if (data.success) {
+        $("#warningMsg").text("");
+        $("#warningMsg").hide();
+        $("#exampleModalCenter").modal('hide');
+        $("#textinput").val("");
+      } else {
+        $("#warningMsg").text("Internal Error Try again");
+        $("#warningMsg").show();
+      }
     }
   });
+
+  }
 
 });

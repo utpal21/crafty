@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Response;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\InqueryEmail;
 use Log;
@@ -20,11 +21,15 @@ class EmailController extends Controller
     }
     public function ajaxSendEmail(Request $request) {
 
-       $input = $request->all();
-          
-        Log::info($input);
-     
-        return response()->json(['success'=>'Got Simple Ajax Request.']);
-
+      $emailTo = env('MAIL_FROM_ADDRESS'); 
+      $details = $request->all();
+      
+      if(!empty($details)) {
+         Mail::to($emailTo)->send(new InqueryEmail($details));
+         return response()->json(['success'=> true]);
+      } else {
+          return response()->json(['success'=> false]);
+      }
+      
     }
 }

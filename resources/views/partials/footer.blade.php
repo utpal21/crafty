@@ -110,6 +110,9 @@
             </button>
           </div>
           <div class="modal-body">
+            <div id="warningMsg" class="alert alert-warning" role="alert" style="display:none">
+
+            </div>
             <form>
               @csrf
               <div class="form-group">

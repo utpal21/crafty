@@ -12,13 +12,20 @@ class InqueryEmail extends Mailable
     use Queueable, SerializesModels;
 
     /**
+     * The details instance.
+     *
+     * @var \App\Models\Order
+     */
+    public $details;
+
+ /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct($details)
     {
-        //
+        $this->details = $details;
     }
 
     /**
@@ -28,6 +35,8 @@ class InqueryEmail extends Mailable
      */
     public function build()
     {
-        return $this->view('pages.mail.index');
+          return $this->subject('Product Inquery from crafty')
+            ->view('pages.mail.index')
+            ->from('inquery@crafty.com', 'Crafty Inquery');
     }
 }

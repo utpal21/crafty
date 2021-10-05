@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\EmailController;
+use App\Http\Controllers\WishlistController;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,8 +23,9 @@ Route::get('/about-us', 'App\Http\Controllers\AboutusController@index');
 Route::get('/contact-us', 'App\Http\Controllers\AboutusController@contact_us');
 
 //Route::get('/send-email', [EmailController::class, "sendEmail"]);
-Route::post('/send-email', [EmailController::class, "ajaxSendEmail"])->name('ajax.send.mail');
+Route::post('/send-email', [EmailController::class, "ajaxSendEmail"])->name('sendmail');
 
+//Route::namespace('Auth')->group(function () {
 
 Route::get('/auth/login', [AuthController::class, 'index'])->name('login');
 Route::post('/custom-signin', [AuthController::class, 'createSignin'])->name('user.login');
@@ -35,3 +37,7 @@ Route::post('/create-user', [AuthController::class, 'customSignup'])->name('user
 
 Route::get('/dashboard', [AuthController::class, 'dashboardView'])->name('dashboard');
 Route::get('/user/auth/logout', [AuthController::class, 'logout'])->name('logout');
+
+Route::get('/user/mypage', [WishlistController::class, 'index'])->name('user.mypage');
+
+//});

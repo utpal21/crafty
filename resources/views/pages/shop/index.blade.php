@@ -56,8 +56,8 @@
               </div>
               <div class="ml-auto d-flex flex-column">
                 <div class="my-auto content-change-vertical">
-                  <a href="#" data-target="#exampleModalCenter" data-toggle="tooltip" data-placement="left"
-                    title="Add to card"
+                  <a href="#" data-toggle="modal" data-target="#exampleModalCenter" data-toggle="tooltip"
+                    data-placement="left" title="Add to card"
                     class="add-to-cart d-flex align-items-center justify-content-center text-primary bg-white hover-white bg-hover-primary w-45px h-45px rounded-circle mb-2 border">
                     <i class="far fa-shopping-basket"></i>
                   </a>
