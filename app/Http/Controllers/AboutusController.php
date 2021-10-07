@@ -14,10 +14,12 @@ class AboutusController extends Controller
    * Show about us page view 
    */
   public function index()
-  {    
+  {        
+    $about = DB::table('abouts')->orderByRaw('created_at DESC')->first();
     $members = DB::table('members')->orderByRaw('created_at DESC')->get();
      return view('pages.about.index', [
-            'members' => $members
+            'members' => $members,
+            'about' => $about
         ]);
   }  
   /**
@@ -25,7 +27,7 @@ class AboutusController extends Controller
    */
   public function contact_us()
   {    
-    $contactData = DB::table('contacts')->orderByRaw('created_at DESC')->get();
+    $contactData = DB::table('contacts')->orderByRaw('created_at DESC')->first();
      return view('pages.contact.index', [
             'contactData' => $contactData
         ]);

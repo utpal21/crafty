@@ -2,42 +2,60 @@
 @section('page-title', 'Contact Us')
 @section('content')
 <main id="content">
+  @if(!empty($contactData))
   <section class="pt-10 pb-8 pb-md-10">
     <div class="container">
-      <h2 class="fs-sm-40 mb-10 text-center">Contact Us</h2>
+      <h2 class="fs-sm-40 mb-10 text-center">{{ $contactData->title }}</h2>
       <div class="row">
+        @if(!empty($contactData->address))
         <div class="col-sm-6 col-md-3 mb-6 mb-md-0">
           <div class="text-center px-5">
-            <p class="font-weight-bold text-primary mb-2">Address</p>
-            <p class="mb-2">Send us a text & an ambassador will respond when available.</p>
-            <p class="font-weight-500 text-primary mb-0">1-814-251-9966</p>
+            <p class="font-weight-bold text-primary mb-2">Head Office</p>
+            <p class="mb-2">{{ $contactData->address }}</p>
+            <p class="font-weight-500 text-primary mb-0">{{ env('OFFICE_PHONE') }}</p>
           </div>
         </div>
+        @endif
+        @if(!empty($contactData->address_one))
         <div class="col-sm-6 col-md-3 mb-6 mb-md-0">
           <div class="text-center px-5">
-            <p class="font-weight-bold text-primary mb-2">Address</p>
-            <p class="mb-2">461 Valencia Street San Francisco, CA 94103</p>
-            <a href="#" class="text-decoration-underline lh-12">Get Direction</a>
+            <p class="font-weight-bold text-primary mb-2">Local Office</p>
+            <p class="mb-2">{{ $contactData->address_one }}</p>
           </div>
         </div>
+        @endif
+        @if(!empty($contactData->open_time))
         <div class="col-sm-6 col-md-3 mb-6 mb-md-0">
           <div class="text-center px-5">
             <p class="font-weight-bold text-primary mb-2">We're Open</p>
-            <p class="mb-0">Our store has re-opened for shopping, exchanges
-              Every day 11am to 7pm</p>
+            <p class="mb-0">{{ $contactData->open_time }}</p>
           </div>
         </div>
+        @endif
         <div class="col-sm-6 col-md-3 mb-6 mb-md-0">
           <div class="text-center px-5">
             <p class="font-weight-bold text-primary mb-5">Social Media</p>
             <ul class="list-inline d-flex align-items-center justify-content-center mb-0">
-              <li class="list-inline-item mr-4"><a href="#" class="fs-20 lh-1"><i class="fab fa-pinterest-p"></i></a>
+              @if(!empty($contactData->facebook_url))
+              <li class="list-inline-item mr-4"><a href="{{ $contactData->facebook_url }}" class="fs-20 lh-1"><i
+                    class="fab fa-facebook-f"></i></a>
               </li>
-              <li class="list-inline-item mr-4"><a href="#" class="fs-20 lh-1"><i class="fab fa-facebook-f"></i></a>
+              @endif
+              @if(!empty($contactData->twitter_url))
+              <li class="list-inline-item"><a href="{{ $contactData->twitter_url }}" class="fs-20 lh-1"><i
+                    class="fab fa-twitter"></i></a></li>
+              @endif
+              @if(!empty($contactData->inatagram_url))
+              <li class="list-inline-item mr-4"><a href="{{ $contactData->inatagram_url }}" class="fs-20 lh-1"><i
+                    class="fab fa-instagram"></i></a>
               </li>
-              <li class="list-inline-item mr-4"><a href="#" class="fs-20 lh-1"><i class="fab fa-instagram"></i></a>
+              @endif
+              @if(!empty($contactData->youtube_url))
+              <li class="list-inline-item mr-4"><a href="{{ $contactData->youtube_url }}" class="fs-20 lh-1"><i
+                    class="fab fa-youtube"></i></a>
               </li>
-              <li class="list-inline-item"><a href="#" class="fs-20 lh-1"><i class="fab fa-twitter"></i></a></li>
+              @endif
+
             </ul>
           </div>
         </div>
@@ -77,12 +95,13 @@
       </div>
     </div>
   </div>
+  @endif
   <section class="pb-10">
     <div class="container container-xxl">
-      <div id="map" class="mapbox-gl map-point-animate" style="height: 535px"
-        data-mapbox-access-token="pk.eyJ1IjoiZHVvbmdsaCIsImEiOiJjanJnNHQ4czExMzhyNDVwdWo5bW13ZmtnIn0.f1bmXQsS6o4bzFFJc8RCcQ"
-        data-mapbox-options='{"center":[-106.53671888774004, 35.12362056187368],"setLngLat":[-106.53671888774004, 35.12362056187368],"zoom":5}'
-        data-mapbox-marker='[{"position":[-106.53671888774004, 35.12362056187368],"className":"marker","backgroundImage":"images/marker-01.png","backgroundRepeat":"no-repeat","width":"70px","height":"70px"}]'>
+      <div class="" style="height: 350px">
+        <iframe
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d233667.8223924372!2d90.27923775747219!3d23.780887456211758!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3755b8b087026b81%3A0x8fa563bbdd5904c2!2sDhaka!5e0!3m2!1sen!2sbd!4v1633589774696!5m2!1sen!2sbd"
+          width="100%" height="350" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
       </div>
     </div>
   </section>
