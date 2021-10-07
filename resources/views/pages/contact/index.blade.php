@@ -71,23 +71,38 @@
           </h2>
           <p class="mb-7">If you’ve got great products your making or looking to work with us then drop us a
             line.</p>
-          <form>
+
+          @if(Session::has('success'))
+          <div class="alert alert-success col">
+            <button type="button" class="close" data-dismiss="alert">×</button>
+            {{Session::get('success')}}
+          </div>
+          @endif
+
+          @if ($errors->any())
+          <div class="alert alert-danger">
+            <ul>
+              @foreach ($errors->all() as $error)
+              <li>{{ $error }}</li>
+              @endforeach
+            </ul>
+          </div>
+          @endif
+          <form method="POST" action="{{ url('/send-contact') }}">
+            @csrf
             <div class="row mb-6">
               <div class="col-sm-6">
-                <input type="text" class="form-control" placeholder="Your Name*" required>
+                <input type="text" name="name" class="form-control" placeholder="Your Name*" required>
               </div>
               <div class="col-sm-6">
-                <input type="email" class="form-control" placeholder="Your Email*" required>
+                <input type="email" name="email" class="form-control" placeholder="Your Email*" required>
               </div>
             </div>
             <div class="form-group mb-4">
-              <textarea class="form-control" rows="6">Comment</textarea>
+              <input type="text" name="phone" class="form-control" placeholder="Your Phone*" required>
             </div>
-            <div class="custom-control custom-checkbox mb-6">
-              <input type="checkbox" class="custom-control-input" id="customCheck1">
-              <label class="custom-control-label fs-15" for="customCheck1"> Save my name, email, and website
-                in this
-                browser for the next time I comment.</label>
+            <div class="form-group mb-4">
+              <textarea name="message" class="form-control" rows="6" placeholder="Write you comment"></textarea>
             </div>
             <button type="submit" class="btn btn-primary text-uppercase letter-spacing-05">submit now</button>
           </form>

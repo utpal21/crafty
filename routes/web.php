@@ -24,6 +24,7 @@ Route::get('/contact-us', 'App\Http\Controllers\AboutusController@contact_us');
 
 //Route::get('/send-email', [EmailController::class, "sendEmail"]);
 Route::post('/send-email', [EmailController::class, "ajaxSendEmail"])->name('sendmail');
+Route::post('/send-contact', [EmailController::class, "contact_to_admin"])->name('contact.to.admin');
 
 //Route::namespace('Auth')->group(function () {
 

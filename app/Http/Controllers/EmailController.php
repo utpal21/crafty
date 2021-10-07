@@ -5,7 +5,10 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Response;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Redirect;
 use App\Mail\InqueryEmail;
+use App\Mail\ContactAdmin;
 use Log;
 
 class EmailController extends Controller
@@ -31,5 +34,21 @@ class EmailController extends Controller
           return response()->json(['success'=> false]);
       }
       
+    }
+    /**
+     * will come comment from client to admin
+     */
+    public function contact_to_admin(Request $request){
+        $data = $request->all();
+        $emailTo = env('MAIL_FROM_ADDRESS');
+         $vr = Validator::make($request->all(), [
+            'name' => 'required',
+            'email' => 'required|email',
+            'phone' => 'required',
+            'message' => 'required',
+        ])->validate();
+          Mail::to($emailTo)->send(new ContactAdmin($data));
+          return Redirect::back()->withSuccess('Success! admin will contact with you very soon.');
+
     }
 }
