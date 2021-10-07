@@ -21,9 +21,32 @@ class ShopController extends Controller
   {
     
    $products = Product::paginate(12);
-   //$products->appends(['sort' => 'min_order']);
+    $category = DB::table('categories')->orderByRaw('created_at DESC')->get();
      return view('pages.shop.index', [
-            'products' => $products
+            'products' => $products,
+            'category' => $category
         ]);
-  }  
+  }
+  
+  /**
+   * Shop by category
+   */
+  public function shop_by_category($id){
+     $products = [];
+     $category = [];
+     $categoryCheck = [];
+    if(!empty($id)) {
+       $categoryCheck = Category::findOrFail($id);
+       if(!empty($categoryCheck)) {
+        $products = DB::table('products')->where('category_id', $id)->orderByRaw('created_at DESC')->get(); 
+       }
+    }
+     $category = DB::table('categories')->orderByRaw('created_at DESC')->get();  
+    
+    return view('pages.shop.shopcategory', [
+            'products' => $products,
+            'category' => $category,
+            'categoryCheck' => $categoryCheck
+    ]);
+  }
 }

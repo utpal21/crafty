@@ -5,6 +5,7 @@
   <section class="overflow-hidden">
     <div class="slick-slider"
       data-slick-options='{"slidesToShow": 1,"infinite":true,"autoplay":false,"dots":false,"arrows":false}'>
+
       <div class="box">
         <div
           class="d-flex flex-column justify-content-center justify-content-lg-start bg-img-cover-center vh-100 pt-lg-17 custom-height-sm"
@@ -13,39 +14,6 @@
             <div class="container container-xxl">
               <p class="text-primary font-weight-bold fs-20 mb-4" data-animate="fadeInUp">New - In</p>
               <h1 class="mb-7 fs-40 fs-xxl-90 lh-1" data-animate="fadeInUp">Carabottino</h1>
-              <div><a href="#" class="btn btn-primary text-uppercase letter-spacing-05" data-animate="fadeInUp">Shop
-                  Now</a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="box">
-        <div
-          class="d-flex flex-column justify-content-center justify-content-lg-start bg-img-cover-center vh-100 pt-lg-17 custom-height-sm"
-          style="background-image: url('images/bg-home-07.jpg')">
-          <div class="d-flex flex-column justify-content-center justify-content-lg-start h-100">
-            <div class="container container-xxl">
-              <p class="text-primary font-weight-bold fs-20 mb-4" data-animate="fadeInUp">New - In</p>
-              <h2 class="mb-7 fs-40 fs-xxl-90 lh-1" data-animate="fadeInUp">Carabottino</h2>
-              <div><a href="#" class="btn btn-primary text-uppercase letter-spacing-05" data-animate="fadeInUp">Shop
-                  Now</a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="box">
-        <div
-          class="d-flex flex-column justify-content-center justify-content-lg-start bg-img-cover-center vh-100 pt-lg-17 custom-height-sm"
-          style="background-image: url('images/bg-home-07.jpg')">
-          <div class="d-flex flex-column justify-content-center justify-content-lg-start h-100">
-            <div class="container container-xxl">
-              <p class="text-primary font-weight-bold fs-20 mb-4" data-animate="fadeInUp">New - In</p>
-              <h2 class="mb-7 fs-40 fs-xxl-90 lh-1" data-animate="fadeInUp">Carabottino</h2>
-              <div><a href="#" class="btn btn-primary text-uppercase letter-spacing-05" data-animate="fadeInUp">Shop
-                  Now</a>
-              </div>
             </div>
           </div>
         </div>

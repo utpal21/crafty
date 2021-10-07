@@ -19,6 +19,7 @@ use App\Http\Controllers\WishlistController;
 Route::get('/', 'App\Http\Controllers\HomeController@index');
 Route::get('/product/details/{id}', 'App\Http\Controllers\HomeController@show');
 Route::get('/shop', 'App\Http\Controllers\ShopController@index');
+Route::get('/product/category/{id}', 'App\Http\Controllers\ShopController@shop_by_category');
 Route::get('/about-us', 'App\Http\Controllers\AboutusController@index');
 Route::get('/contact-us', 'App\Http\Controllers\AboutusController@contact_us');
 
