@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Pagination\LengthAwarePaginator;
@@ -43,15 +44,17 @@ class WishlistController extends Controller
 
      public function store(Request $request)
     {
+
         $this->validate($request, array(
         'user_id'=>'required',
         'product_id' =>'required',
         ));
 
+       
         $status = Wishlist::where('user_id',Auth::user()->id)
         ->where('product_id',$request->product_id)
         ->first();     
-
+               
         if(isset($status->user_id) and isset($request->product_id))
         {
             return redirect()->back()->withFail('This product is already in your
@@ -66,5 +69,20 @@ class WishlistController extends Controller
             return Redirect::back()->withSuccess('Added to your favourite list');
         }
 
+        }
+
+        /**
+         * Delete favourite
+         */
+        public function destroy($id)
+        {
+            $wishlist = Wishlist::findOrFail($id);
+            if(!empty($wishlist)) {
+                $wishlist->delete();
+                return Redirect::back()->withSuccess('Item Deleted Successfully!');
+            } else {
+                return redirect()->back()->withFail('Not Found!! the item on server');          
+            }       
+        
         }
 }

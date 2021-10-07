@@ -40,5 +40,6 @@ Route::get('/user/auth/logout', [AuthController::class, 'logout'])->name('logout
 
 Route::get('/user/mypage', [WishlistController::class, 'index'])->name('user.mypage');
 Route::post('/user/favourate', [WishlistController::class, 'store'])->name('add.fav');
+Route::get('/user/unfavourite/{id}', [WishlistController::class, 'destroy'])->name('remove.fav');
 
 //});

@@ -13,6 +13,22 @@
       <h1 class="fs-40 mb-1 text-capitalize text-center">Favourite Products</h1>
     </div>
   </section>
+  <div class="container">
+    <div class="h-100 row align-items-center">
+      @if(Session::has('success'))
+      <div class="alert alert-success col">
+        <button type="button" class="close" data-dismiss="alert">×</button>
+        {{Session::get('success')}}
+      </div>
+      @endif
+      @if(Session::has('fail'))
+      <div class="alert alert-danger col">
+        <button type="button" class="close" data-dismiss="alert">×</button>
+        {{Session::get('fail')}}
+      </div>
+      @endif
+    </div>
+  </div>
   <section>
     <div class="container container-xxl">
       <div class="row mb-7 overflow-hidden">
@@ -36,9 +52,10 @@
                     class="add-to-cart d-flex align-items-center justify-content-center text-primary bg-white hover-white bg-hover-primary w-45px h-45px rounded-circle mb-2 border">
                     <i class="far fa-shopping-basket"></i>
                   </a>
-                  <a href="#" data-toggle="tooltip" data-placement="left" title="Add to favourite"
+                  <a href="{{ url('user/unfavourite/'.$p->id) }}" data-toggle="tooltip" data-placement="left"
+                    title="Make Unfavourite"
                     class="add-to-wishlist d-flex align-items-center justify-content-center text-primary bg-white hover-white bg-hover-primary w-45px h-45px rounded-circle mb-2 border">
-                    <i class="far fa-heart"></i>
+                    <i class="far fa-trash-alt"></i>
                   </a>
                 </div>
               </div>

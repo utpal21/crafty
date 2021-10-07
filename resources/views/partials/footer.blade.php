@@ -38,7 +38,7 @@
         </div>
         <div class="mt-2 mt-md-7 row align-items-center">
           <p class="col-md-auto mb-4 mb-md-0 text-gray lh-1 fs-14 font-weight-500">
-            © 2021 Craftant. All rights reserved.
+            © 2021 CraftyAnt. All rights reserved.
           </p>
         </div>
       </div>

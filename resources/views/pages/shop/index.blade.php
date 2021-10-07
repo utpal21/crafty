@@ -11,19 +11,22 @@
   <section class="py-8 page-title border-top mt-1">
     <div class="container">
       <h1 class="fs-40 mb-1 text-capitalize text-center">Shop All</h1>
+      <div class="h-100 row align-items-center">
+        @if(Session::has('success'))
+        <div class="alert alert-success col">
+          <button type="button" class="close" data-dismiss="alert">×</button>
+          {{Session::get('success')}}
+        </div>
+        @endif
+        @if(Session::has('fail'))
+        <div class="alert alert-danger col">
+          <button type="button" class="close" data-dismiss="alert">×</button>
+          {{Session::get('fail')}}
+        </div>
+        @endif
+      </div>
     </div>
-    @if(Session::has('success'))
-    <div class="alert alert-success">
-      <button type="button" class="close" data-dismiss="alert">×</button>
-      {{Session::get('success')}}
-    </div>
-    @endif
-    @if(Session::has('fail'))
-    <div class="alert alert-danger">
-      <button type="button" class="close" data-dismiss="alert">×</button>
-      {{Session::get('fail')}}
-    </div>
-    @endif
+
   </section>
   <section>
     <div class="container container-xxl">
@@ -35,19 +38,6 @@
           </button>
           Filter
         </div>
-        <!-- <div class="ml-auto">
-          <div class="dropdown">
-            <a href="#" class="dropdown-toggle fs-14" id="dropdownMenuButton" data-toggle="dropdown"
-              aria-haspopup="true" aria-expanded="false">
-              Default Sorting
-            </a>
-            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton" style="">
-              <a class="dropdown-item text-primary fs-14" href="#">Price high to low</a>
-              <a class="dropdown-item text-primary fs-14" href="#">Price low to high</a>
-              <a class="dropdown-item text-primary fs-14" href="#">Random</a>
-            </div>
-          </div>
-        </div> -->
       </div>
       <div class="row mb-7 overflow-hidden">
         @if (!empty($products))
@@ -59,12 +49,9 @@
             </div>
             <div class="card-img-overlay d-flex py-4 py-sm-5 pl-6 pr-4">
               <div class="d-flex flex-column">
-                <!-- <a href="#" class="font-weight-bold mb-1 d-block lh-12">Bow Chair</a> -->
                 <a href="{{ url('/product/details').'/'.Crypt::encrypt($p->id) }}"
                   class="text-uppercase text-muted letter-spacing-05 fs-12 font-weight-500">{{ $p->name }}</a>
-                <p class="mt-auto text-primary mb-0 font-weight-500">
-                  {{ $p->price_range }}
-                </p>
+
               </div>
               <div class="ml-auto d-flex flex-column">
                 <div class="my-auto content-change-vertical">
@@ -73,6 +60,7 @@
                     class="add-to-cart d-flex align-items-center justify-content-center text-primary bg-white hover-white bg-hover-primary w-45px h-45px rounded-circle mb-2 border">
                     <i class="far fa-shopping-basket"></i>
                   </a>
+                  @if(Auth::user())
                   <form action="{{route('add.fav')}}" id="shopfavform{{$p->id}}" method="post">
                     @csrf
                     <input name="user_id" type="hidden" value="{{Auth::user()->id}}" />
@@ -82,6 +70,14 @@
                     class="add-to-wishlist shopfav  d-flex align-items-center justify-content-center text-primary bg-white hover-white bg-hover-primary w-45px h-45px rounded-circle mb-2 border">
                     <i class="far fa-heart"></i>
                   </a>
+                  @endif
+                  @if(!Auth::user())
+                  <a href="{{ url('/auth/login') }}" data-toggle="tooltip" data-placement="left"
+                    title="Add to favourite"
+                    class="add-to-wishlist d-flex align-items-center justify-content-center text-primary bg-white hover-white bg-hover-primary w-45px h-45px rounded-circle mb-2 border">
+                    <i class="far fa-heart"></i>
+                  </a>
+                  @endif
                 </div>
               </div>
             </div>

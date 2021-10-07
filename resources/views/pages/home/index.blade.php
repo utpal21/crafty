@@ -52,6 +52,22 @@
       </div>
     </div>
   </section>
+  <div class="container">
+    <div class="h-100 row align-items-center">
+      @if(Session::has('success'))
+      <div class="alert alert-success col">
+        <button type="button" class="close" data-dismiss="alert">×</button>
+        {{Session::get('success')}}
+      </div>
+      @endif
+      @if(Session::has('fail'))
+      <div class="alert alert-danger col">
+        <button type="button" class="close" data-dismiss="alert">×</button>
+        {{Session::get('fail')}}
+      </div>
+      @endif
+    </div>
+  </div>
   <section class="py-lg-12 py-11">
     <div class="container container-xxl">
       <div class="row mb-7 align-items-end">
@@ -78,9 +94,6 @@
               <div class="d-flex flex-column">
                 <a href="{{ url('/product/details').'/'.Crypt::encrypt($lp->id) }}"
                   class="font-weight-bold mb-1 d-block lh-12">{{ $lp->name }}</a>
-                <p class="mt-auto text-primary mb-0 font-weight-500">
-                  {{ $lp->price_range }}
-                </p>
               </div>
               <div class="ml-auto d-flex flex-column">
                 <div class="my-auto content-change-vertical">
@@ -89,10 +102,25 @@
                     class="add-to-cart d-flex align-items-center justify-content-center text-primary bg-white hover-white bg-hover-primary w-45px h-45px rounded-circle mb-2 border">
                     <i class="far fa-shopping-basket"></i>
                   </a>
-                  <a href="#" data-toggle="tooltip" data-placement="left" title="Add to favourite"
+                  @if(Auth::user())
+                  <form action="{{route('add.fav')}}" id="shopfavform{{$lp->id}}" method="post">
+                    @csrf
+                    <input name="user_id" type="hidden" value="{{Auth::user()->id}}" />
+                    <input name="product_id" type="hidden" value="{{$lp->id}}" />
+                  </form>
+                  <a data-pid="{{$lp->id}}" href="#" data-toggle="tooltip" data-placement="left"
+                    title="Add to favourite"
+                    class="add-to-wishlist shopfav  d-flex align-items-center justify-content-center text-primary bg-white hover-white bg-hover-primary w-45px h-45px rounded-circle mb-2 border">
+                    <i class="far fa-heart"></i>
+                  </a>
+                  @endif
+                  @if(!Auth::user())
+                  <a href="{{ url('/auth/login') }}" data-toggle="tooltip" data-placement="left"
+                    title="Add to favourite"
                     class="add-to-wishlist d-flex align-items-center justify-content-center text-primary bg-white hover-white bg-hover-primary w-45px h-45px rounded-circle mb-2 border">
                     <i class="far fa-heart"></i>
                   </a>
+                  @endif
                 </div>
               </div>
             </div>
@@ -128,9 +156,6 @@
               <div class="d-flex flex-column">
                 <a href="{{ url('/product/details').'/'.Crypt::encrypt($fp->id) }}"
                   class="font-weight-bold mb-1 d-block lh-12">{{ $fp->name }}</a>
-                <p class=" mt-auto text-primary mb-0 font-weight-500">
-                  {{ $fp->price_range }}
-                </p>
               </div>
               <div class="ml-auto d-flex flex-column">
                 <div class="my-auto content-change-vertical">
@@ -139,10 +164,25 @@
                     class="add-to-cart d-flex align-items-center justify-content-center text-primary bg-white hover-white bg-hover-primary w-45px h-45px rounded-circle mb-2 border">
                     <i class="far fa-shopping-basket"></i>
                   </a>
-                  <a href="#" data-toggle="tooltip" data-placement="left" title="Add to favourite"
+                  @if(Auth::user())
+                  <form action="{{route('add.fav')}}" id="shopfavform{{$fp->id}}" method="post">
+                    @csrf
+                    <input name="user_id" type="hidden" value="{{Auth::user()->id}}" />
+                    <input name="product_id" type="hidden" value="{{$fp->id}}" />
+                  </form>
+                  <a data-pid="{{$fp->id}}" href="#" data-toggle="tooltip" data-placement="left"
+                    title="Add to favourite"
+                    class="add-to-wishlist shopfav  d-flex align-items-center justify-content-center text-primary bg-white hover-white bg-hover-primary w-45px h-45px rounded-circle mb-2 border">
+                    <i class="far fa-heart"></i>
+                  </a>
+                  @endif
+                  @if(!Auth::user())
+                  <a href="{{ url('/auth/login') }}" data-toggle="tooltip" data-placement="left"
+                    title="Add to favourite"
                     class="add-to-wishlist d-flex align-items-center justify-content-center text-primary bg-white hover-white bg-hover-primary w-45px h-45px rounded-circle mb-2 border">
                     <i class="far fa-heart"></i>
                   </a>
+                  @endif
                 </div>
               </div>
             </div>
