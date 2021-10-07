@@ -52,7 +52,7 @@ if(validation) {
         $("#exampleModalCenter").modal('hide');
         $("#textinput").val("");
       } else {
-        $("#warningMsg").text("Internal Error Try again");
+       $("#warningMsg").text("Internal Error Try again");
         $("#warningMsg").show();
       }
     }
@@ -60,4 +60,14 @@ if(validation) {
 
   }
 
+});
+
+/**
+ * shop page favourate add
+ */
+$(".shopfav").click(function (e) {
+  e.preventDefault();
+ 
+  console.log( $(this).attr('data-pid'));
+  $("#shopfavform"+$(this).attr('data-pid')).submit();
 });

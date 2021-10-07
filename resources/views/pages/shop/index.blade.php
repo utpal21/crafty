@@ -12,6 +12,18 @@
     <div class="container">
       <h1 class="fs-40 mb-1 text-capitalize text-center">Shop All</h1>
     </div>
+    @if(Session::has('success'))
+    <div class="alert alert-success">
+      <button type="button" class="close" data-dismiss="alert">×</button>
+      {{Session::get('success')}}
+    </div>
+    @endif
+    @if(Session::has('fail'))
+    <div class="alert alert-danger">
+      <button type="button" class="close" data-dismiss="alert">×</button>
+      {{Session::get('fail')}}
+    </div>
+    @endif
   </section>
   <section>
     <div class="container container-xxl">
@@ -23,7 +35,7 @@
           </button>
           Filter
         </div>
-        <div class="ml-auto">
+        <!-- <div class="ml-auto">
           <div class="dropdown">
             <a href="#" class="dropdown-toggle fs-14" id="dropdownMenuButton" data-toggle="dropdown"
               aria-haspopup="true" aria-expanded="false">
@@ -35,7 +47,7 @@
               <a class="dropdown-item text-primary fs-14" href="#">Random</a>
             </div>
           </div>
-        </div>
+        </div> -->
       </div>
       <div class="row mb-7 overflow-hidden">
         @if (!empty($products))
@@ -61,8 +73,13 @@
                     class="add-to-cart d-flex align-items-center justify-content-center text-primary bg-white hover-white bg-hover-primary w-45px h-45px rounded-circle mb-2 border">
                     <i class="far fa-shopping-basket"></i>
                   </a>
-                  <a href="#" data-toggle="tooltip" data-placement="left" title="Add to favourite"
-                    class="add-to-wishlist d-flex align-items-center justify-content-center text-primary bg-white hover-white bg-hover-primary w-45px h-45px rounded-circle mb-2 border">
+                  <form action="{{route('add.fav')}}" id="shopfavform{{$p->id}}" method="post">
+                    @csrf
+                    <input name="user_id" type="hidden" value="{{Auth::user()->id}}" />
+                    <input name="product_id" type="hidden" value="{{$p->id}}" />
+                  </form>
+                  <a data-pid="{{$p->id}}" href="#" data-toggle="tooltip" data-placement="left" title="Add to favourite"
+                    class="add-to-wishlist shopfav  d-flex align-items-center justify-content-center text-primary bg-white hover-white bg-hover-primary w-45px h-45px rounded-circle mb-2 border">
                     <i class="far fa-heart"></i>
                   </a>
                 </div>
@@ -73,24 +90,9 @@
         @endforeach
         @endif
       </div>
-      <!-- <nav class="pb-11 pb-lg-14 overflow-hidden"> -->
-      <!-- <ul class="pagination justify-content-center align-items-center mb-0">
-          <li class="page-item fs-12 d-none d-sm-block">
-            <a class="page-link" href="#" tabindex="-1"><i class="far fa-angle-double-left"></i></a>
-          </li>
-          <li class="page-item"><a class="page-link" href="#">1</a></li>
-          <li class="page-item active" aria-current="page"><a class="page-link" href="#">2</a></li>
-          <li class="page-item"><a class="page-link" href="#">3</a></li>
-          <li class="page-item"><a class="page-link" href="#">...</a></li>
-          <li class="page-item"><a class="page-link" href="#">6</a></li>
-          <li class="page-item fs-12 d-none d-sm-block">
-            <a class="page-link" href="#"><i class="far fa-angle-double-right"></i></a>
-          </li>
-        </ul> -->
       <div class="bootstrap-custome-pagination pb-11 pb-lg-14 overflow-hidden">
         {{ $products->links() }}
       </div>
-      <!-- </nav> -->
     </div>
   </section>
 </main>
