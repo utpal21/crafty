@@ -5,20 +5,22 @@
   <section class="overflow-hidden">
     <div class="slick-slider"
       data-slick-options='{"slidesToShow": 1,"infinite":true,"autoplay":false,"dots":false,"arrows":false}'>
-
+      @if(!empty($banners))
+      @foreach($banners as $bnrs)
       <div class="box">
         <div
           class="d-flex flex-column justify-content-center justify-content-lg-start bg-img-cover-center vh-100 pt-lg-17 custom-height-sm"
-          style="background-image: url('images/bg-home-07.jpg')">
+          style="background-image: url('{{ asset('/uploads/' . $bnrs->image) }}')">
           <div class="d-flex flex-column justify-content-center justify-content-lg-start h-100">
             <div class="container container-xxl">
-              <p class="text-primary font-weight-bold fs-20 mb-4" data-animate="fadeInUp">New - In</p>
-              <h1 class="mb-7 fs-40 fs-xxl-90 lh-1" data-animate="fadeInUp">Carabottino</h1>
+              <p class="text-primary font-weight-bold fs-20 mb-4" data-animate="fadeInUp">{{ $bnrs->tag }}</p>
+              <h1 class="mb-7 fs-40 fs-xxl-90 lh-1" data-animate="fadeInUp">{{ $bnrs->title }}</h1>
             </div>
           </div>
         </div>
       </div>
-
+      @endforeach
+      @endif
 
     </div>
   </section>

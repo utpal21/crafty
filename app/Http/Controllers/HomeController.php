@@ -11,6 +11,7 @@ use App\Models\User;
 use App\Models\Product;
 use App\Models\Category;
 use App\Models\Happyclient;
+use App\Models\Banner;
 
 class HomeController extends Controller
 {
@@ -23,13 +24,15 @@ class HomeController extends Controller
     // var_dump($user->name);
     
    $clientSays = DB::table('happyclients')->orderByRaw('created_at DESC')->get();
+   $banners = DB::table('banners')->orderByRaw('created_at DESC')->get();
    $featured = DB::table('products')->where('featured', true)->orderByRaw('created_at DESC')->limit(10)->get();   
    $latestProducts = DB::table('products')->orderByRaw('created_at DESC')->limit(10)->get();
     
      return view('pages.home.index', [
             'latestProducts' => $latestProducts,
             'preturedProducts' => $featured,
-            'clientSays' => $clientSays
+            'clientSays' => $clientSays,
+            'banners' => $banners
         ]);
   }
     /**
