@@ -18,5 +18,7 @@ Route::group([
     $router->resource('members', MemberController::class);
     $router->resource('abouts', AboutusController::class);
      $router->resource('contacts', ContactusController::class);
+     $router->resource('banners', BannerController::class);
+
 
 });

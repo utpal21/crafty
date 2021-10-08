@@ -13,11 +13,11 @@ class AddMultiColumnToContact extends Migration
      */
     public function up()
     {
-         Schema::table('contacts', function (Blueprint $table) {
-           $table->string('address_phone_number')->nullable();
-           $table->string('address1_phone_number')->nullable();
-           $table->text('google_map')->nullable();
-        });
+        //  Schema::table('contacts', function (Blueprint $table) {
+        //    $table->string('address_phone_number')->nullable();
+        //    $table->string('address1_phone_number')->nullable();
+        //    $table->text('google_map')->nullable();
+        // });
     }
 
     /**
@@ -27,8 +27,8 @@ class AddMultiColumnToContact extends Migration
      */
     public function down()
     {
-        Schema::table('contacts', function (Blueprint $table) {
-            $table->dropColumn(['address_phone_number',  'address1_phone_number', 'google_map']);
-        });        
+        // Schema::table('contacts', function (Blueprint $table) {
+        //     $table->dropColumn(['address_phone_number',  'address1_phone_number', 'google_map']);
+        // });        
     }
 }
